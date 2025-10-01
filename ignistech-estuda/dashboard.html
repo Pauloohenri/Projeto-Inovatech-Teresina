@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IgnisTech - Estuda+ | Dashboard</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navegação Superior -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <div class="nav-logo">🔥</div>
+            <span>IgnisTech</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-link active" data-page="resumos">
+                <span class="nav-icon">📚</span>
+                <span class="nav-text">Resumos</span>
+            </a>
+            <a href="flashcards.html" class="nav-link" data-page="flashcards">
+                <span class="nav-icon">🧠</span>
+                <span class="nav-text">Flashcards</span>
+            </a>
+            <a href="quizzes.html" class="nav-link" data-page="quizzes">
+                <span class="nav-icon">❓</span>
+                <span class="nav-text">Quizzes</span>
+            </a>
+            <a href="ai.html" class="nav-link" data-page="ai">
+                <span class="nav-icon">🤖</span>
+                <span class="nav-text">IA</span>
+            </a>
+            <a href="ranking.html" class="nav-link" data-page="ranking">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-text">Ranking</span>
+            </a>
+        </div>
+        
+        <div class="user-info">
+            <span class="user-name">Aluno</span>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Resumos por Matéria</h1>
+            <p>Acesse resumos organizados por disciplina para revisar os principais conceitos</p>
+        </div>
+
+        <!-- Menu de Matérias -->
+        <div class="subjects-menu">
+            <button class="subject-btn active" data-subject="matematica">
+                <div class="subject-icon">📐</div>
+                <span>Matemática</span>
+            </button>
+            <button class="subject-btn" data-subject="historia">
+                <div class="subject-icon">📜</div>
+                <span>História</span>
+            </button>
+            <button class="subject-btn" data-subject="ciencias">
+                <div class="subject-icon">🔬</div>
+                <span>Ciências</span>
+            </button>
+            <button class="subject-btn" data-subject="geografia">
+                <div class="subject-icon">🌍</div>
+                <span>Geografia</span>
+            </button>
+            <button class="subject-btn" data-subject="portugues">
+                <div class="subject-icon">📖</div>
+                <span>Português</span>
+            </button>
+        </div>
+
+        <!-- Cards de Resumos -->
+        <div class="summaries-container">
+            <div class="summaries-grid" id="summariesGrid">
+                <!-- Os cards serão inseridos dinamicamente via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para visualizar resumo completo -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Título do Resumo</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo do resumo será inserido aqui -->
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/dashboard.js"></script>
+</body>
+</html>

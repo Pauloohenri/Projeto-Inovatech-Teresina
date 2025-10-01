@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IgnisTech - Estuda+ | Flashcards</title>
+    <link rel="stylesheet" href="styles/flashcards.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navegação Superior -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <div class="nav-logo">🔥</div>
+            <span>IgnisTech</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-link" data-page="resumos">
+                <span class="nav-icon">📚</span>
+                <span class="nav-text">Resumos</span>
+            </a>
+            <a href="flashcards.html" class="nav-link active" data-page="flashcards">
+                <span class="nav-icon">🧠</span>
+                <span class="nav-text">Flashcards</span>
+            </a>
+            <a href="quizzes.html" class="nav-link" data-page="quizzes">
+                <span class="nav-icon">❓</span>
+                <span class="nav-text">Quizzes</span>
+            </a>
+            <a href="ai.html" class="nav-link" data-page="ai">
+                <span class="nav-icon">🤖</span>
+                <span class="nav-text">IA</span>
+            </a>
+            <a href="ranking.html" class="nav-link" data-page="ranking">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-text">Ranking</span>
+            </a>
+        </div>
+        
+        <div class="user-info">
+            <span class="user-name">Aluno</span>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Flashcards Interativos</h1>
+            <p>Teste seus conhecimentos com flashcards que viram para revelar as respostas</p>
+        </div>
+
+        <!-- Seleção de Matéria -->
+        <div class="subject-selector">
+            <label for="subjectSelect">Escolha a matéria:</label>
+            <select id="subjectSelect" class="subject-select">
+                <option value="matematica">📐 Matemática</option>
+                <option value="historia">📜 História</option>
+                <option value="ciencias">🔬 Ciências</option>
+                <option value="geografia">🌍 Geografia</option>
+                <option value="portugues">📖 Português</option>
+            </select>
+        </div>
+
+        <!-- Barra de Progresso -->
+        <div class="progress-section">
+            <div class="progress-info">
+                <span class="progress-text" id="progressText">0 de 0 flashcards</span>
+                <span class="score-text" id="scoreText">Acertos: 0 | Erros: 0</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Container do Flashcard -->
+        <div class="flashcard-container">
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-inner">
+                    <!-- Frente do Card -->
+                    <div class="flashcard-front">
+                        <div class="card-header">
+                            <span class="card-type">Pergunta</span>
+                            <span class="card-number" id="cardNumber">1/10</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="question-icon">❓</div>
+                            <h3 class="question-text" id="questionText">Clique em "Iniciar" para começar</h3>
+                        </div>
+                        <div class="card-footer">
+                            <p class="flip-hint">Clique no card para ver a resposta</p>
+                        </div>
+                    </div>
+
+                    <!-- Verso do Card -->
+                    <div class="flashcard-back">
+                        <div class="card-header">
+                            <span class="card-type">Resposta</span>
+                            <span class="card-number" id="cardNumberBack">1/10</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="answer-icon">💡</div>
+                            <div class="answer-text" id="answerText">A resposta aparecerá aqui</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="answer-buttons">
+                                <button class="answer-btn wrong-btn" onclick="markAnswer(false)">
+                                    <span class="btn-icon">👎</span>
+                                    <span>Errou</span>
+                                </button>
+                                <button class="answer-btn correct-btn" onclick="markAnswer(true)">
+                                    <span class="btn-icon">👍</span>
+                                    <span>Acertou</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="controls-section">
+            <button class="control-btn start-btn" id="startBtn" onclick="startFlashcards()">
+                <span class="btn-icon">🚀</span>
+                <span>Iniciar</span>
+            </button>
+            
+            <button class="control-btn restart-btn" id="restartBtn" onclick="restartFlashcards()" style="display: none;">
+                <span class="btn-icon">🔄</span>
+                <span>Reiniciar</span>
+            </button>
+        </div>
+
+        <!-- Resultado Final -->
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-card">
+                <div class="results-header">
+                    <div class="results-icon">🎉</div>
+                    <h3>Sessão Concluída!</h3>
+                </div>
+                <div class="results-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="finalCorrect">0</span>
+                        <span class="stat-label">Acertos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="finalWrong">0</span>
+                        <span class="stat-label">Erros</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="finalPercentage">0%</span>
+                        <span class="stat-label">Aproveitamento</span>
+                    </div>
+                </div>
+                <div class="results-message" id="resultsMessage">
+                    Parabéns pelo seu desempenho!
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/flashcards.js"></script>
+</body>
+</html>

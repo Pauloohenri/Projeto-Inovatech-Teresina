@@ -1,0 +1,313 @@
+/* 
+ * IgnisTech - Estuda+ | Login Page Styles
+ * Arquivo CSS para a página de login com identidade visual em tons de azul
+ * Inclui animações suaves, degradês e design responsivo
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e3f2fd 0%, #1976d2 50%, #0d47a1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Container principal do login */
+.login-container {
+  display: flex;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  max-width: 900px;
+  width: 90%;
+  min-height: 500px;
+  z-index: 10;
+  position: relative;
+}
+
+/* Seção da marca/logo */
+.brand-section {
+  flex: 1;
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+  color: white;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.logo {
+  margin-bottom: 30px;
+}
+
+.flame-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: flameFlicker 2s ease-in-out infinite alternate;
+}
+
+.logo h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.slogan {
+  font-size: 1.1rem;
+  font-style: italic;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* Animação da chama */
+@keyframes flameFlicker {
+  0% {
+    transform: scale(1) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(2deg);
+  }
+}
+
+/* Formulário de login */
+.login-form {
+  flex: 1;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form h2 {
+  color: #1976d2;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.form-description {
+  color: #666;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+.input-group {
+  margin-bottom: 25px;
+}
+
+.input-group label {
+  display: block;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #2196f3;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+/* Botão de login com efeito de brilho */
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(33, 150, 243, 0.3);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+/* Efeito de brilho no botão */
+.btn-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.login-btn:hover .btn-glow {
+  left: 100%;
+}
+
+/* Credenciais de demonstração */
+.demo-credentials {
+  background: #f0f7ff;
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid #2196f3;
+}
+
+.demo-credentials p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.demo-credentials code {
+  background: #e3f2fd;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+/* Elementos flutuantes de fundo */
+.bg-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-element {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.element-1 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.element-2 {
+  width: 120px;
+  height: 120px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.element-3 {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px;
+  }
+
+  .brand-section {
+    padding: 40px 30px;
+  }
+
+  .logo h1 {
+    font-size: 2rem;
+  }
+
+  .flame-icon {
+    font-size: 3rem;
+  }
+
+  .login-form {
+    padding: 40px 30px;
+  }
+
+  .login-form h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Estados de carregamento */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.loading .btn-text::after {
+  content: "...";
+  animation: dots 1s infinite;
+}
+
+@keyframes dots {
+  0%,
+  20% {
+    content: "...";
+  }
+  40% {
+    content: "..";
+  }
+  60% {
+    content: ".";
+  }
+  80%,
+  100% {
+    content: "";
+  }
+}

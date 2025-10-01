@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IgnisTech - Estuda+ | IA Assistente</title>
+    <link rel="stylesheet" href="styles/ai.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navegação Superior -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <div class="nav-logo">🔥</div>
+            <span>IgnisTech</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-link" data-page="resumos">
+                <span class="nav-icon">📚</span>
+                <span class="nav-text">Resumos</span>
+            </a>
+            <a href="flashcards.html" class="nav-link" data-page="flashcards">
+                <span class="nav-icon">🧠</span>
+                <span class="nav-text">Flashcards</span>
+            </a>
+            <a href="quizzes.html" class="nav-link" data-page="quizzes">
+                <span class="nav-icon">❓</span>
+                <span class="nav-text">Quizzes</span>
+            </a>
+            <a href="ai.html" class="nav-link active" data-page="ai">
+                <span class="nav-icon">🤖</span>
+                <span class="nav-text">IA</span>
+            </a>
+            <a href="ranking.html" class="nav-link" data-page="ranking">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-text">Ranking</span>
+            </a>
+        </div>
+        
+        <div class="user-info">
+            <span class="user-name">Aluno</span>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="ai-container">
+            <!-- Header da IA -->
+            <div class="ai-header">
+                <div class="ai-avatar">
+                    <div class="avatar-icon">🤖</div>
+                    <div class="avatar-status online"></div>
+                </div>
+                <div class="ai-info">
+                    <h2>IA Assistente</h2>
+                    <p class="ai-status">Online - Analisando seu desempenho</p>
+                </div>
+                <div class="ai-actions">
+                    <button class="action-btn" onclick="clearChat()" title="Limpar conversa">
+                        <span>🗑️</span>
+                    </button>
+                    <button class="action-btn" onclick="generateReport()" title="Gerar relatório">
+                        <span>📊</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Container -->
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Mensagem de boas-vindas -->
+                    <div class="message ai-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                Olá! Eu sou sua IA assistente no IgnisTech. Estou aqui para analisar seu desempenho e dar dicas personalizadas de estudo. 
+                                <br><br>
+                                Vou acompanhar suas atividades nos resumos, flashcards e quizzes para oferecer feedback inteligente!
+                            </div>
+                            <div class="message-time">Agora</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input de Mensagem -->
+                <div class="chat-input-container">
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            placeholder="Digite sua pergunta ou peça uma dica de estudo..."
+                            maxlength="500"
+                        >
+                        <button class="send-btn" onclick="sendMessage()" id="sendBtn">
+                            <span class="send-icon">📤</span>
+                        </button>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="quick-btn" onclick="askQuickQuestion('performance')">
+                            📈 Como está meu desempenho?
+                        </button>
+                        <button class="quick-btn" onclick="askQuickQuestion('tips')">
+                            💡 Dicas de estudo
+                        </button>
+                        <button class="quick-btn" onclick="askQuickQuestion('weak-areas')">
+                            🎯 Áreas para melhorar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Painel de Análise -->
+            <div class="analysis-panel">
+                <h3>Análise de Desempenho</h3>
+                
+                <div class="performance-cards">
+                    <div class="perf-card">
+                        <div class="card-icon">📚</div>
+                        <div class="card-content">
+                            <div class="card-title">Resumos</div>
+                            <div class="card-value" id="resumosCount">0</div>
+                            <div class="card-subtitle">visualizados</div>
+                        </div>
+                    </div>
+                    
+                    <div class="perf-card">
+                        <div class="card-icon">🧠</div>
+                        <div class="card-content">
+                            <div class="card-title">Flashcards</div>
+                            <div class="card-value" id="flashcardsAccuracy">0%</div>
+                            <div class="card-subtitle">de acertos</div>
+                        </div>
+                    </div>
+                    
+                    <div class="perf-card">
+                        <div class="card-icon">❓</div>
+                        <div class="card-content">
+                            <div class="card-title">Quizzes</div>
+                            <div class="card-value" id="quizzesScore">0</div>
+                            <div class="card-subtitle">pontos totais</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insights-section">
+                    <h4>Insights da IA</h4>
+                    <div class="insights-list" id="insightsList">
+                        <div class="insight-item">
+                            <span class="insight-icon">🔍</span>
+                            <span class="insight-text">Analisando seus dados de estudo...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/ai.js"></script>
+</body>
+</html>

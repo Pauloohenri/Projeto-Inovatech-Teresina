@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IgnisTech - Estuda+ | Ranking</title>
+    <link rel="stylesheet" href="styles/ranking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navegação Superior -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <div class="nav-logo">🔥</div>
+            <span>IgnisTech</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-link" data-page="resumos">
+                <span class="nav-icon">📚</span>
+                <span class="nav-text">Resumos</span>
+            </a>
+            <a href="flashcards.html" class="nav-link" data-page="flashcards">
+                <span class="nav-icon">🧠</span>
+                <span class="nav-text">Flashcards</span>
+            </a>
+            <a href="quizzes.html" class="nav-link" data-page="quizzes">
+                <span class="nav-icon">❓</span>
+                <span class="nav-text">Quizzes</span>
+            </a>
+            <a href="ai.html" class="nav-link" data-page="ai">
+                <span class="nav-icon">🤖</span>
+                <span class="nav-text">IA</span>
+            </a>
+            <a href="ranking.html" class="nav-link active" data-page="ranking">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-text">Ranking</span>
+            </a>
+        </div>
+        
+        <div class="user-info">
+            <span class="user-name">Aluno</span>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Header do Ranking -->
+        <div class="ranking-header">
+            <div class="header-content">
+                <h1>🏆 Ranking da Turma</h1>
+                <p>Compete com seus colegas e veja quem está no topo!</p>
+            </div>
+            <div class="ranking-filters">
+                <select id="periodFilter" class="filter-select">
+                    <option value="semanal">Esta Semana</option>
+                    <option value="mensal">Este Mês</option>
+                    <option value="geral">Geral</option>
+                </select>
+                <select id="subjectFilter" class="filter-select">
+                    <option value="todas">Todas as Matérias</option>
+                    <option value="matematica">Matemática</option>
+                    <option value="historia">História</option>
+                    <option value="ciencias">Ciências</option>
+                    <option value="geografia">Geografia</option>
+                    <option value="portugues">Português</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="ranking-container">
+            <!-- Pódio dos Top 3 -->
+            <div class="podium-section">
+                <h2>🥇 Pódio da Semana</h2>
+                <div class="podium">
+                    <!-- 2º Lugar -->
+                    <div class="podium-place second-place">
+                        <div class="place-number">2</div>
+                        <div class="student-avatar">
+                            <img src="/placeholder.svg?height=60&width=60" alt="Avatar">
+                            <div class="avatar-badge silver">🥈</div>
+                        </div>
+                        <div class="student-info">
+                            <div class="student-name">Maria Silva</div>
+                            <div class="student-points">2.450 pts</div>
+                        </div>
+                    </div>
+
+                    <!-- 1º Lugar -->
+                    <div class="podium-place first-place">
+                        <div class="place-number">1</div>
+                        <div class="student-avatar">
+                            <img src="/placeholder.svg?height=80&width=80" alt="Avatar">
+                            <div class="avatar-badge gold">👑</div>
+                        </div>
+                        <div class="student-info">
+                            <div class="student-name">João Santos</div>
+                            <div class="student-points">3.120 pts</div>
+                        </div>
+                        <div class="winner-effects">
+                            <div class="sparkle sparkle-1">✨</div>
+                            <div class="sparkle sparkle-2">⭐</div>
+                            <div class="sparkle sparkle-3">✨</div>
+                        </div>
+                    </div>
+
+                    <!-- 3º Lugar -->
+                    <div class="podium-place third-place">
+                        <div class="place-number">3</div>
+                        <div class="student-avatar">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Avatar">
+                            <div class="avatar-badge bronze">🥉</div>
+                        </div>
+                        <div class="student-info">
+                            <div class="student-name">Ana Costa</div>
+                            <div class="student-points">1.890 pts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ranking Completo -->
+            <div class="full-ranking-section">
+                <h2>📊 Ranking Completo</h2>
+                <div class="ranking-list" id="rankingList">
+                    <!-- Os itens do ranking serão inseridos dinamicamente -->
+                </div>
+            </div>
+
+            <!-- Painel do Usuário -->
+            <div class="user-panel">
+                <h2>🎯 Seu Desempenho</h2>
+                
+                <div class="user-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏅</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="userPosition">5º</div>
+                            <div class="stat-label">Posição</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="userPoints">1.650</div>
+                            <div class="stat-label">Pontos</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="userTrend">+120</div>
+                            <div class="stat-label">Esta semana</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conquistas -->
+                <div class="achievements-section">
+                    <h3>🏆 Conquistas</h3>
+                    <div class="achievements-grid" id="achievementsGrid">
+                        <!-- Conquistas serão inseridas dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Próximas Metas -->
+                <div class="goals-section">
+                    <h3>🎯 Próximas Metas</h3>
+                    <div class="goals-list" id="goalsList">
+                        <!-- Metas serão inseridas dinamicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Conquista -->
+    <div class="achievement-modal" id="achievementModal">
+        <div class="modal-content">
+            <div class="achievement-celebration">
+                <div class="celebration-icon">🎉</div>
+                <h3>Nova Conquista!</h3>
+                <div class="achievement-badge" id="modalAchievementBadge">🏅</div>
+                <div class="achievement-title" id="modalAchievementTitle">Primeira Vitória</div>
+                <div class="achievement-description" id="modalAchievementDesc">Você completou seu primeiro quiz!</div>
+                <div class="points-earned" id="modalPointsEarned">+50 pontos</div>
+                <button class="close-modal-btn" onclick="closeAchievementModal()">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/ranking.js"></script>
+</body>
+</html>

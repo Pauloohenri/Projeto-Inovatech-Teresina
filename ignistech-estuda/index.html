@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IgnisTech - Estuda+ | Login</title>
+    <link rel="stylesheet" href="styles/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Logo e Branding -->
+        <div class="brand-section">
+            <div class="logo">
+                <div class="flame-icon">🔥</div>
+                <h1>IgnisTech</h1>
+                <span class="subtitle">Estuda+</span>
+            </div>
+            <p class="slogan">"A chama que ilumina o aprendizado."</p>
+        </div>
+
+        <!-- Formulário de Login -->
+        <div class="login-form">
+            <h2>Bem-vindo de volta!</h2>
+            <p class="form-description">Entre com suas credenciais para continuar aprendendo</p>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span class="btn-text">Entrar</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </form>
+            
+            <div class="demo-credentials">
+                <p><strong>Credenciais de demonstração:</strong></p>
+                <p>Usuário: <code>aluno</code> | Senha: <code>123</code></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elementos decorativos de fundo -->
+    <div class="bg-elements">
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+        <div class="floating-element element-3"></div>
+    </div>
+
+    <script src="scripts/login.js"></script>
+</body>
+</html>

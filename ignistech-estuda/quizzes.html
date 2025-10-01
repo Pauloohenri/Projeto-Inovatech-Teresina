@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IgnisTech - Estuda+ | Quizzes</title>
+    <link rel="stylesheet" href="styles/quizzes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navegação Superior -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <div class="nav-logo">🔥</div>
+            <span>IgnisTech</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-link" data-page="resumos">
+                <span class="nav-icon">📚</span>
+                <span class="nav-text">Resumos</span>
+            </a>
+            <a href="flashcards.html" class="nav-link" data-page="flashcards">
+                <span class="nav-icon">🧠</span>
+                <span class="nav-text">Flashcards</span>
+            </a>
+            <a href="quizzes.html" class="nav-link active" data-page="quizzes">
+                <span class="nav-icon">❓</span>
+                <span class="nav-text">Quizzes</span>
+            </a>
+            <a href="ai.html" class="nav-link" data-page="ai">
+                <span class="nav-icon">🤖</span>
+                <span class="nav-text">IA</span>
+            </a>
+            <a href="ranking.html" class="nav-link" data-page="ranking">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-text">Ranking</span>
+            </a>
+        </div>
+        
+        <div class="user-info">
+            <span class="user-name">Aluno</span>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Tela Inicial -->
+        <div class="start-screen" id="startScreen">
+            <div class="start-content">
+                <div class="quiz-icon">🎯</div>
+                <h1>Quizzes Interativos</h1>
+                <p>Teste seus conhecimentos com quizzes dinâmicos estilo Kahoot!</p>
+                
+                <div class="quiz-options">
+                    <div class="option-group">
+                        <label for="subjectSelect">Escolha a matéria:</label>
+                        <select id="subjectSelect" class="subject-select">
+                            <option value="matematica">📐 Matemática</option>
+                            <option value="historia">📜 História</option>
+                            <option value="ciencias">🔬 Ciências</option>
+                            <option value="geografia">🌍 Geografia</option>
+                            <option value="portugues">📖 Português</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="difficultySelect">Nível de dificuldade:</label>
+                        <select id="difficultySelect" class="difficulty-select">
+                            <option value="facil">🟢 Fácil</option>
+                            <option value="medio">🟡 Médio</option>
+                            <option value="dificil">🔴 Difícil</option>
+                            <option value="misto">🌈 Misto</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="start-quiz-btn" onclick="startQuiz()">
+                    <span class="btn-icon">🚀</span>
+                    <span>Iniciar Quiz</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela do Quiz -->
+        <div class="quiz-screen" id="quizScreen" style="display: none;">
+            <!-- Barra de Progresso -->
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-info">
+                    <span class="question-counter" id="questionCounter">1/10</span>
+                    <span class="score-display" id="scoreDisplay">Pontos: 0</span>
+                </div>
+            </div>
+
+            <!-- Pergunta -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-icon" id="questionIcon">❓</div>
+                    <div class="timer-display" id="timerDisplay">15</div>
+                </div>
+                <h2 class="question-text" id="questionText">Carregando pergunta...</h2>
+            </div>
+
+            <!-- Alternativas -->
+            <div class="answers-grid" id="answersGrid">
+                <button class="answer-option" data-index="0" onclick="selectAnswer(0)">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">Opção A</span>
+                </button>
+                <button class="answer-option" data-index="1" onclick="selectAnswer(1)">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">Opção B</span>
+                </button>
+                <button class="answer-option" data-index="2" onclick="selectAnswer(2)">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">Opção C</span>
+                </button>
+                <button class="answer-option" data-index="3" onclick="selectAnswer(3)">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">Opção D</span>
+                </button>
+            </div>
+
+            <!-- Feedback -->
+            <div class="feedback-container" id="feedbackContainer" style="display: none;">
+                <div class="feedback-content">
+                    <div class="feedback-icon" id="feedbackIcon">✅</div>
+                    <h3 class="feedback-title" id="feedbackTitle">Correto!</h3>
+                    <p class="feedback-text" id="feedbackText">Muito bem! Você acertou a resposta.</p>
+                    <div class="feedback-points" id="feedbackPoints">+100 pontos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Resultados -->
+        <div class="results-screen" id="resultsScreen" style="display: none;">
+            <div class="results-content">
+                <div class="results-header">
+                    <div class="results-icon" id="resultsIcon">🏆</div>
+                    <h2>Quiz Finalizado!</h2>
+                </div>
+                
+                <div class="final-score">
+                    <div class="score-circle">
+                        <div class="score-number" id="finalScore">0</div>
+                        <div class="score-label">pontos</div>
+                    </div>
+                </div>
+                
+                <div class="results-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="correctAnswers">0</div>
+                        <div class="stat-label">Acertos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="wrongAnswers">0</div>
+                        <div class="stat-label">Erros</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="accuracyRate">0%</div>
+                        <div class="stat-label">Precisão</div>
+                    </div>
+                </div>
+                
+                <div class="performance-message" id="performanceMessage">
+                    Parabéns pelo seu desempenho!
+                </div>
+                
+                <div class="results-actions">
+                    <button class="action-btn retry-btn" onclick="restartQuiz()">
+                        <span class="btn-icon">🔄</span>
+                        <span>Tentar Novamente</span>
+                    </button>
+                    <button class="action-btn new-quiz-btn" onclick="newQuiz()">
+                        <span class="btn-icon">🎯</span>
+                        <span>Novo Quiz</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/quizzes.js"></script>
+</body>
+</html>
