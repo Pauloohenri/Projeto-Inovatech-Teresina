@@ -1,5 +1,5 @@
 # IgnisTech Estuda 📚🔥
-
+OBS: Não funcional, foi desenvolvido apenas como uma ideia em uma feira escolar
 Plataforma web de estudos com **flashcards, quizzes, ranking e apoio de IA**, desenvolvida para auxiliar estudantes na organização e prática dos conteúdos de forma interativa.
 
 ## 🚀 Funcionalidades
